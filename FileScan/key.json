@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "elaborate-karma-359110",
+  "private_key_id": "ff116ea69fcf22df99eddc1e3bd2c5f68cdc73cc",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCy6Dm93LO8icc5\n+V8xRsICkUjIrFBvI7WQyQX5Wlt3NYYgPWWp9gJ33ksecOi/HL6aP4hzBbkbafKU\nYTt+ujjAjh4PLAVESeBLxXf8NMsO2GsWnCD2BjE7q8W00c16XnI0AOUHsJsOkdl9\nbeEFXO/gFKUqY+4yoO6fiC7/Zyxo/vP/z2a9BZzL++HL27dR68VjPPmFGvD1AM9V\nqCBSia9nXnS4HhP5jnps/vJ2GCzJb4U0X+U5PW0vAzHvgh9Qd1Eo8y+LquyGYqCh\nEGN3REsEtxirE4ZG5cMPQOhP3AAJDkEJP2NB2d4z/rhbKGFip8zrN2JAtXntxSME\ncYaAb9hRAgMBAAECggEABReyKRLitN+xIZfVG1h5xkvvZ/LruTYpgW0Pc/kb+Gk4\nH6vPvIZJrLLRrZSmM2Z0kHx1fFyx17Ns2cdow6M2YVjKR0FIBxkZPt7omu+/xfTo\nG3UnRQmJFjs9/fco465TjuJlopHm4APLzpO1n4r1MwozZ2D/00YcdMMSH2gG7hgj\nl2FsA7cWdjrY31wBwyGcURaNqqHMidBIN57SaB5Zn9l2cIqNEWhx9Mk2cbpHtB3R\nLNcEp1rKWYnoGBdjgqeWYiDd5FqlbT0GdSEJK9wBxkIkQQAVF1YwMStEOa9UkRUL\njqHoiH4pq79ncY+Z3ClmNnIPKnRAvVwSpSoCMUE8FwKBgQDZ41Vabd9ozvwe4y20\nI/1910JDWcri5OPIrJm/zLbwvnSr+7hteqq8c5CPmts7tBqnArYXHzsThHVo/UeA\nXrTUdljt3P/ix7tDrolS8USvPOxdoo3LYuPFoHrJ/EsZokJm6iD1UqWXk/4FrsQb\nnqVK6CecWKDSRFAILcI9iZ2BnwKBgQDSM2RhX0JyqH4Q9rGQTNMdhw6TJoOyuMrA\n0wrxTp9ALR79ObAmiRyBOA2KLjsHq+/lchDLyUH/DNfNM1io9MPsPCPTUfcGMVCb\nkjGqyGSFlORA4V23IML/gr8Q0Oqufi2tSsMmUIqAaRnaZ+iSXy4GzUyeYgT7+TaH\nJenDnELADwKBgGcOxdJN4bvbGxko7vcjhsS8yhS9Jd+Hz82dBePYWjcoflrSZvsx\naAxWxOuHnWZx26FfAO2S0gh7QGV2Vxl6siFEEPAA9e839XUf2sgmYgxYzpvDRToL\n/hv9udZLxOHNA4dV+lzOyJAXabEaZpuBwEDb6dBjgz2xHgGgUx10N9GVAoGBAIu9\n0MEPJEy3iT/b0UX+XOenbuAS3cEGKvywEPlFbIest4pfPKURyBp72jx/6Yx7GLwv\n7cyc2rwlnJ31wb5pIos9nA+T0SaTyGP0eAJywKkxx+D+MmBZbmmRUVZrnWktx04K\ngtxI9RrTRHW3WJ1em2m4OHSe83NURZTpdpQtoQ6vAoGBAMwH/eobdddUch5/pZ8p\nId55U0VdKZGGaP/xoE8AgDS8oAu7MPQ/Zmm04QHTwoXxvwfo7z3zO/QPoFjXnFgf\nnCuJCxRkhSAXJslDq5X7MIhV9RYealmv3T7P0s2wXy6I/j/YkVEX66ksdCgZe9QK\n2gy09XFGdiGkyiS3TIZrTUXy\n-----END PRIVATE KEY-----\n",
+  "client_email": "msc-research@elaborate-karma-359110.iam.gserviceaccount.com",
+  "client_id": "103527914441191607753",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/msc-research%40elaborate-karma-359110.iam.gserviceaccount.com"
+}
