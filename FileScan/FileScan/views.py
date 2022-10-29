@@ -27,8 +27,8 @@ def getResources(request):
    ResSearch = ''
    pdfList = getPdfList(keyWord)
    presentationList = getPptxList(keyWord)
-   videoList = getVideoList('inheritance')
-   listing = [  videoList ]
+#    videoList = getVideoList('inheritance')
+   listing = [  pdfList, presentationList ]
    return JsonResponse(listing, safe=False)
 
 
@@ -42,8 +42,10 @@ def getPdfList (word):
         for i in range(0, NumPages):
             PageObj = object.getPage(i)
             Text = PageObj.extractText() 
-            # print(Text)
-            ResSearch = re.search(str(word), Text)
+            raw_search_string = r"\b" + str(word)
+            print(raw_search_string)
+            ResSearch = re.search(raw_search_string, Text, re.IGNORECASE)
+
             if(ResSearch is not None):
                 pdfToStudy.insert(len(pdfToStudy)+1, pdf+" slide no "+ str(i+1)+" Onwards ")
     return pdfToStudy
