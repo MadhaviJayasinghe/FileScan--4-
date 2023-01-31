@@ -20,10 +20,10 @@ config = dict(
 )
 
 @csrf_exempt
-def getResources(request):
+def getResources1(request):
    key = json.loads(request.body.decode('utf-8'))  
    keyWord = key['keyWord']
-   print(keyWord)
+#    print(keyWord)
    ResSearch = ''
    pdfList = getPdfList(keyWord)
    presentationList = getPptxList(keyWord)
@@ -31,13 +31,72 @@ def getResources(request):
    listing = [  pdfList, presentationList ]
    return JsonResponse(listing, safe=False)
 
+@csrf_exempt
+def getResources2(request):
+   key = json.loads(request.body.decode('utf-8'))  
+   keyWord = key['keyWord']
+   print(keyWord)
+   ResSearch = ''
+   pdfList = getPdfList2(keyWord)
+   presentationList = getPptxList(keyWord)
+#    videoList = getVideoList('inheritance')
+   listing = [  pdfList, presentationList ]
+   return JsonResponse(listing, safe=False)
+
+@csrf_exempt
+def getResources3(request):
+   key = json.loads(request.body.decode('utf-8'))  
+   keyWord = key['keyWord']
+   print(keyWord)
+   ResSearch = ''
+   pdfList = getPdfList3(keyWord)
+   presentationList = getPptxList(keyWord)
+#    videoList = getVideoList('inheritance')
+   listing = [  pdfList, presentationList ]
+   return JsonResponse(listing, safe=False)
 
 def getPdfList (word):
     pdfToStudy = []
-    pdfList = listdir('pdf/')
+    pdfList = listdir('Level1/pdf1/')
 
     for pdf in pdfList:
-        object = PyPDF2.PdfFileReader('pdf/'+pdf)
+        object = PyPDF2.PdfFileReader('Level1/pdf1/'+pdf)
+        NumPages = object.getNumPages()
+        for i in range(0, NumPages):
+            PageObj = object.getPage(i)
+            Text = PageObj.extractText() 
+            raw_search_string = r"\b" + str(word)
+            print(raw_search_string)
+            ResSearch = re.search(raw_search_string, Text, re.IGNORECASE)
+
+            if(ResSearch is not None):
+                pdfToStudy.insert(len(pdfToStudy)+1, pdf+" slide no "+ str(i+1)+" Onwards ")
+    return pdfToStudy
+
+def getPdfList2 (word):
+    pdfToStudy = []
+    pdfList = listdir('Level2/pdf/')
+
+    for pdf in pdfList:
+        object = PyPDF2.PdfFileReader('Level2/pdf/'+pdf)
+        NumPages = object.getNumPages()
+        for i in range(0, NumPages):
+            PageObj = object.getPage(i)
+            Text = PageObj.extractText() 
+            raw_search_string = r"\b" + str(word)
+            print(raw_search_string)
+            ResSearch = re.search(raw_search_string, Text, re.IGNORECASE)
+
+            if(ResSearch is not None):
+                pdfToStudy.insert(len(pdfToStudy)+1, pdf+" slide no "+ str(i+1)+" Onwards ")
+    return pdfToStudy
+
+def getPdfList3 (word):
+    pdfToStudy = []
+    pdfList = listdir('Level3/pdf/')
+
+    for pdf in pdfList:
+        object = PyPDF2.PdfFileReader('Level3/pdf/'+pdf)
         NumPages = object.getNumPages()
         for i in range(0, NumPages):
             PageObj = object.getPage(i)

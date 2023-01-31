@@ -21,5 +21,7 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('getResource', views.getResources, name="getResource")
+    path('getResource1', views.getResources1, name="getResource1"),
+    path('getResource2', views.getResources2, name="getResource2"),
+    path('getResource3', views.getResources3, name="getResource3")
 ]
