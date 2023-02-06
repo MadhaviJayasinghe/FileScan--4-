@@ -70,7 +70,7 @@ def getLevel1PdfList (word):
             ResSearch = re.search(raw_search_string, Text, re.IGNORECASE)
 
             if(ResSearch is not None):
-                pdfToStudy.insert(len(pdfToStudy)+1, pdf+" slide no "+ str(i+1)+" Onwards ")
+                pdfToStudy.insert(len(pdfToStudy)+1, pdf+" page no "+ str(i+1)+" Onwards ")
     return pdfToStudy
 
 def getLevel1PptxList (word):
@@ -85,9 +85,9 @@ def getLevel1PptxList (word):
             for shape in slide.shapes:
                 if hasattr(shape, "text"):
                     shape.text = shape.text.lower()
-                    if str(word) in shape.text:
+                    if str(word).casefold() in shape.text:
                         slidesToStudy.insert(len(slidesToStudy)+1, presentation+" slide no "+ str(slideNo)+" Onwards  ")
-            break
+            # break
     return slidesToStudy
 
 def getLevel1VideoList(word):
@@ -128,7 +128,7 @@ def getLevel2PdfList (word):
             ResSearch = re.search(raw_search_string, Text, re.IGNORECASE)
 
             if(ResSearch is not None):
-                pdfToStudy.insert(len(pdfToStudy)+1, pdf+" slide no "+ str(i+1)+" Onwards ")
+                pdfToStudy.insert(len(pdfToStudy)+1, pdf+" page no "+ str(i+1)+" Onwards ")
     return pdfToStudy
 
 def getLevel2PptxList (word):
@@ -143,9 +143,9 @@ def getLevel2PptxList (word):
             for shape in slide.shapes:
                 if hasattr(shape, "text"):
                     shape.text = shape.text.lower()
-                    if str(word) in shape.text:
+                    if str(word).casefold() in shape.text:
                         slidesToStudy.insert(len(slidesToStudy)+1, presentation+" slide no "+ str(slideNo)+" Onwards  ")
-            break
+            # break
     return slidesToStudy
 
 def getLevel2VideoList(word):
@@ -186,7 +186,7 @@ def getLevel3PdfList (word):
             ResSearch = re.search(raw_search_string, Text, re.IGNORECASE)
 
             if(ResSearch is not None):
-                pdfToStudy.insert(len(pdfToStudy)+1, pdf+" slide no "+ str(i+1)+" Onwards ")
+                pdfToStudy.insert(len(pdfToStudy)+1, pdf+" page no "+ str(i+1)+" Onwards ")
     return pdfToStudy
 
 def getLevel3PptxList (word):
@@ -201,9 +201,9 @@ def getLevel3PptxList (word):
             for shape in slide.shapes:
                 if hasattr(shape, "text"):
                     shape.text = shape.text.lower()
-                    if str(word) in shape.text:
+                    if str(word).casefold() in shape.text:
                         slidesToStudy.insert(len(slidesToStudy)+1, presentation+" slide no "+ str(slideNo)+" Onwards  ")
-            break
+            # break
     return slidesToStudy
 
 def getLevel3VideoList(word):
