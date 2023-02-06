@@ -23,11 +23,11 @@ config = dict(
 def getResources1(request):
    key = json.loads(request.body.decode('utf-8'))  
    keyWord = key['keyWord']
-#    print(keyWord)
    ResSearch = ''
-   pdfList = getPdfList(keyWord)
-   presentationList = getPptxList(keyWord)
-#    videoList = getVideoList('inheritance')
+   pdfList = getLevel1PdfList(keyWord)
+   presentationList = getLevel1PptxList(keyWord)
+   videoKey = getVideoKeyWord(keyWord)
+#    videoList = getLevel1VideoList(videoKey)
    listing = [  pdfList, presentationList ]
    return JsonResponse(listing, safe=False)
 
@@ -35,11 +35,11 @@ def getResources1(request):
 def getResources2(request):
    key = json.loads(request.body.decode('utf-8'))  
    keyWord = key['keyWord']
-   print(keyWord)
    ResSearch = ''
-   pdfList = getPdfList2(keyWord)
-   presentationList = getPptxList(keyWord)
-#    videoList = getVideoList('inheritance')
+   pdfList = getLevel2PdfList(keyWord)
+   presentationList = getLevel2PptxList(keyWord)
+   videoKey = getVideoKeyWord(keyWord)
+#    videoList = getLevel2VideoList(videoKey)
    listing = [  pdfList, presentationList ]
    return JsonResponse(listing, safe=False)
 
@@ -47,15 +47,15 @@ def getResources2(request):
 def getResources3(request):
    key = json.loads(request.body.decode('utf-8'))  
    keyWord = key['keyWord']
-   print(keyWord)
    ResSearch = ''
-   pdfList = getPdfList3(keyWord)
-   presentationList = getPptxList(keyWord)
-#    videoList = getVideoList('inheritance')
+   pdfList = getLevel3PdfList(keyWord)
+   presentationList = getLevel3PptxList(keyWord)
+   videoKey = getVideoKeyWord(keyWord)
+#    videoList = getLevel3VideoList(videoKey)
    listing = [  pdfList, presentationList ]
    return JsonResponse(listing, safe=False)
 
-def getPdfList (word):
+def getLevel1PdfList (word):
     pdfToStudy = []
     pdfList = listdir('Level1/pdf1/')
 
@@ -73,7 +73,47 @@ def getPdfList (word):
                 pdfToStudy.insert(len(pdfToStudy)+1, pdf+" slide no "+ str(i+1)+" Onwards ")
     return pdfToStudy
 
-def getPdfList2 (word):
+def getLevel1PptxList (word):
+    slidesList = listdir('Level1/slides/')
+    slidesToStudy = []
+
+    for presentation in slidesList:
+        prs = Presentation('Level1/slides/'+presentation)
+        slideNo = 0
+        for slide in prs.slides:
+            slideNo = slideNo + 1
+            for shape in slide.shapes:
+                if hasattr(shape, "text"):
+                    shape.text = shape.text.lower()
+                    if str(word) in shape.text:
+                        slidesToStudy.insert(len(slidesToStudy)+1, presentation+" slide no "+ str(slideNo)+" Onwards  ")
+            break
+    return slidesToStudy
+
+def getLevel1VideoList(word):
+    videoToStudy = []
+    videoList = listdir('Level1/video/')
+    client = speech.SpeechClient.from_service_account_file('key.json')
+
+    for video in videoList:
+        
+        my_clip = mp.VideoFileClip("Level1/video/"+video)
+        my_clip.audio.write_audiofile("audio.mp3")
+        with open("audio.mp3", 'rb') as f:
+            mp3 = f.read()
+        audio = speech.RecognitionAudio(content=mp3)
+        aaa  = (client.recognize(
+            config=config,
+            audio= audio
+        ))
+
+        ssss = print_sentences(aaa, word)
+        videoToStudy.append(str(video) + "  "+ str(ssss))
+
+                
+    return videoToStudy
+
+def getLevel2PdfList (word):
     pdfToStudy = []
     pdfList = listdir('Level2/pdf/')
 
@@ -91,7 +131,47 @@ def getPdfList2 (word):
                 pdfToStudy.insert(len(pdfToStudy)+1, pdf+" slide no "+ str(i+1)+" Onwards ")
     return pdfToStudy
 
-def getPdfList3 (word):
+def getLevel2PptxList (word):
+    slidesList = listdir('Level2/slides/')
+    slidesToStudy = []
+
+    for presentation in slidesList:
+        prs = Presentation('Level2/slides/'+presentation)
+        slideNo = 0
+        for slide in prs.slides:
+            slideNo = slideNo + 1
+            for shape in slide.shapes:
+                if hasattr(shape, "text"):
+                    shape.text = shape.text.lower()
+                    if str(word) in shape.text:
+                        slidesToStudy.insert(len(slidesToStudy)+1, presentation+" slide no "+ str(slideNo)+" Onwards  ")
+            break
+    return slidesToStudy
+
+def getLevel2VideoList(word):
+    videoToStudy = []
+    videoList = listdir('Level2/video/')
+    client = speech.SpeechClient.from_service_account_file('key.json')
+
+    for video in videoList:
+        
+        my_clip = mp.VideoFileClip("Level2/video/"+video)
+        my_clip.audio.write_audiofile("audio.mp3")
+        with open("audio.mp3", 'rb') as f:
+            mp3 = f.read()
+        audio = speech.RecognitionAudio(content=mp3)
+        aaa  = (client.recognize(
+            config=config,
+            audio= audio
+        ))
+
+        ssss = print_sentences(aaa, word)
+        videoToStudy.append(str(video) + "  "+ str(ssss))
+
+                
+    return videoToStudy
+
+def getLevel3PdfList (word):
     pdfToStudy = []
     pdfList = listdir('Level3/pdf/')
 
@@ -109,12 +189,12 @@ def getPdfList3 (word):
                 pdfToStudy.insert(len(pdfToStudy)+1, pdf+" slide no "+ str(i+1)+" Onwards ")
     return pdfToStudy
 
-def getPptxList (word):
-    slidesList = listdir('slides/')
+def getLevel3PptxList (word):
+    slidesList = listdir('Level3/slides/')
     slidesToStudy = []
 
     for presentation in slidesList:
-        prs = Presentation('slides/'+presentation)
+        prs = Presentation('Level3/slides/'+presentation)
         slideNo = 0
         for slide in prs.slides:
             slideNo = slideNo + 1
@@ -126,16 +206,16 @@ def getPptxList (word):
             break
     return slidesToStudy
 
-def getVideoList(word):
+def getLevel3VideoList(word):
     videoToStudy = []
-    videoList = listdir('video/')
+    videoList = listdir('Level3/video/')
     client = speech.SpeechClient.from_service_account_file('key.json')
 
     for video in videoList:
         
-        my_clip = mp.VideoFileClip("video/"+video)
-        my_clip.audio.write_audiofile("test.mp3")
-        with open("test.mp3", 'rb') as f:
+        my_clip = mp.VideoFileClip("Level3/video/"+video)
+        my_clip.audio.write_audiofile("audio.mp3")
+        with open("audio.mp3", 'rb') as f:
             mp3 = f.read()
         audio = speech.RecognitionAudio(content=mp3)
         aaa  = (client.recognize(
@@ -180,8 +260,11 @@ def print_word_offsets(alternative, words):
             return ( f"{start_s:>7.3f} | {end_s:>7.3f} | {word}")
         print(f"{start_s:>7.3f} | {end_s:>7.3f} | {word}")
 
-
-
+def getVideoKeyWord (word):
+    if word == 'OOP':
+        videoKeyWord = 'inheritence'
+    
+    return videoKeyWord
 
 
 
